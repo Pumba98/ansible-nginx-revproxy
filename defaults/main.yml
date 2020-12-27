@@ -15,7 +15,7 @@ nginx_revproxy_sites:                                         # List of sites to
     letsencrypt: false                                        # Set to True if you want use letsencrypt
     letsencrypt_email: ""                                     # Set email for letencrypt cert
 
-nginx_revproxy_certbot_auto: true
+nginx_revproxy_certbot_snap: true
 
 nginx_revproxy_certbot_packages:
   - certbot
