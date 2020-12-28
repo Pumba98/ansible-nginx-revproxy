@@ -87,24 +87,6 @@
     siteconfig
   when:
     - nginxinstalled is success
-    - not item.value.ssl | default(True)
-    - not item.value.letsencrypt | default(True)
-  tags:
-    - nginxrevproxy
-
-- name: Add Https Site Config
-  template:
-    src: reverseproxy_ssl.conf.j2
-    dest: /etc/nginx/sites-available/{{ item.key }}.conf
-    owner: root
-    group: root
-    mode: 0640
-  with_dict: "{{ nginx_revproxy_sites }}"
-  register:
-    siteconfig
-  when:
-    - nginxinstalled is success
-    - item.value.ssl | default(False)
     - not item.value.letsencrypt | default(True)
   tags:
     - nginxrevproxy
