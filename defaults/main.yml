@@ -15,6 +15,15 @@ nginx_revproxy_sites:                                         # List of sites to
     letsencrypt: false                                        # Set to True if you want use letsencrypt
     letsencrypt_email: ""                                     # Set email for letencrypt cert
 
+    backend_protocol: http                                    # Optional: Protocol for backend communication
+    header_upgrade_connection: true                           # Optional: Set connection upgrade header
+    header_host: true                                         # Optional: Set Host header
+    header_real_ip: true                                      # Optional: Set X-Real-IP header
+    header_forwarded_for: true                                # Optional: Set X-Forwarded-For header
+    header_forwarded_proto: true                              # Optional: Set X-Forwarded-Proto header
+    header_same_origin: true                                  # Optional: Set X-Frame-Options SAMEORIGIN header
+
+
 nginx_revproxy_certbot_snap: true
 
 nginx_revproxy_certbot_packages:
