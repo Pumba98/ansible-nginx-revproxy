@@ -174,5 +174,5 @@
 
 - include_tasks: letsencrypt.yml
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy

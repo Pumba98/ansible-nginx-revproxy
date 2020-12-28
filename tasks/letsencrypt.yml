@@ -6,7 +6,7 @@
     state: present
   when: nginx_revproxy_certbot_snap
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Install core snap
@@ -15,7 +15,7 @@
     state: present
   when: nginx_revproxy_certbot_snap
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Install certbot from snap
@@ -25,7 +25,7 @@
     classic: yes
   when: nginx_revproxy_certbot_snap
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Prepare the certbot command
@@ -35,7 +35,7 @@
     state: link
   when: nginx_revproxy_certbot_snap
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Install certbot from repository
@@ -44,7 +44,7 @@
     state: present
   when: not nginx_revproxy_certbot_snap
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Get Active Sites
@@ -53,7 +53,7 @@
   check_mode: false
   register: active
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Enable sites for ACME protocol
@@ -96,7 +96,7 @@
     - active.changed
     - nginxinstalled is success
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Generate certs (first time)
@@ -110,7 +110,7 @@
   with_dict: "{{ nginx_revproxy_sites }}"
   when: item.value.letsencrypt | default(False)
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Update Site Config
@@ -125,7 +125,7 @@
   when:
     - item.value.letsencrypt | default(False)
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
 
 - name: Insert cert-bot renew in crontab
@@ -136,5 +136,5 @@
     minute: "30"
     weekday: "1"
   tags:
-    - lesencrypt
+    - letsencrypt
     - nginxrevproxy
