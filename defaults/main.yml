@@ -25,6 +25,7 @@ nginx_revproxy_sites:                                         # List of sites to
     header_forwarded_proto: true                              # Optional: Set X-Forwarded-Proto header
     header_same_origin: true                                  # Optional: Set X-Frame-Options SAMEORIGIN header
 
+    custom_config: |                                          # Optional: Overwrite the location configuration
 
 nginx_revproxy_certbot_snap: true
 

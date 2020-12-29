@@ -103,6 +103,11 @@ server {
    access_log /var/log/nginx/{{ item.key }}_access.log;
    error_log /var/log/nginx/{{ item.key }}_error.log error;
 
+{% if item.value.customConfig is defined and item.value.customConfig|length %}
+
+   {{ item.value.custom_config }}
+
+{% else %}
    location / {
       gzip {{ item.value.gzip | default('off')}};
 {% if item.value.header_forwarded_ssl | default(item.value.ssl) %}
@@ -136,4 +141,5 @@ server {
 {% endif %}
    }
 }
+{% endif %}
 {% endif %}
