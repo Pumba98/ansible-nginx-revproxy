@@ -16,6 +16,8 @@ nginx_revproxy_sites:                                         # List of sites to
     letsencrypt_email: ""                                     # Set email for letencrypt cert
 
     backend_protocol: http                                    # Optional: Protocol for backend communication
+    gzip: 'off'                                               # Optional: Set 'on' to enable gzip
+    header_forwarded_ssl:                                     # Optional: Set X-Forwarded-Ssl header
     header_upgrade_connection: true                           # Optional: Set connection upgrade header
     header_host: true                                         # Optional: Set Host header
     header_real_ip: true                                      # Optional: Set X-Real-IP header

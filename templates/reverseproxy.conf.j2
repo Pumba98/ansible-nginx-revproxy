@@ -104,9 +104,10 @@ server {
    error_log /var/log/nginx/{{ item.key }}_error.log error;
 
    location / {
-      gzip off;
-{% if item.value.ssl %}
+      gzip {{ item.value.gzip | default('off')}};
+{% if item.value.header_forwarded_ssl | default(item.value.ssl) %}
       proxy_set_header X-Forwarded-Ssl on;
+{% endif %}
       client_max_body_size {{ item.value.client_max_body_size | default('50M') }};
       proxy_read_timeout {{ item.value.proxy_read_timeout | default('300') }};
 {% if item.value.header_upgrade_connection | default(true) %}
